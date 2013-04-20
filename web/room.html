@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <title>CampFire</title>
+
+    <style>
+        html {
+            background-color: #ecebe8;
+        }
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <!-- logo -->
+        <div class="row">
+            <a href="index.html">
+                <img src="images/logo.png" href="index.html" />
+            </a>
+        </div>
+
+        <br />
+
+        <!-- room info -->
+        <div class="row" style="font-size: 16px;">
+            <span class="success label">Room Name: <span id="tag"></span></span>
+        </div>
+        <!-- messages -->
+        <div class="row">
+            <div class="large-10 large-centered columns text-center">
+                <div class="panel" style="padding: 15px; text-align: left; font-size: 17px;">
+                    <div id='messagesDiv'>
+                    </div>
+                </div>
+                <input type="text" id="messageInput" placeholder="input song uri/message...">
+                <label><a href="javascript:void(0);" onclick="toggleHelp();">toggle help</a></label>
+            </div>
+        </div>
+        <br />
+        <br />
+    </div>
+
+    <script type="text/javascript" src='https://cdn.firebase.com/v0/firebase.js'></script>
+    <script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+    <script type="text/javascript" src="scripts/generics.js"></script>
+    <script type="text/javascript" src='scripts/main.js'></script>
+    <script type="text/javascript">
+        function toggleHelp()
+        {
+            // make sure we don't get any nasty flashing
+            if($("#help").length > 0)
+            {
+                $("#help").remove();
+            }
+            else
+            {
+                $("#content").append("<div id='help'><div class='row'><dl><dt>Sharing rooms</dt><dd>To share this room, give the person it's name (shown inside the green box) and enter as normal into the apps main page textbox.</dd><dt>Room controls</dt><dd>Here you can play songs to everyone by copy and pasting (ctrl+c and ctrl+v) the song URI into the message input box. To get a song URI, right click the song in spotify and select the 'Copy Spotify URI' or 'Copy HTTP Link'</dd></dl></div></div>");
+            }
+        }
+    </script>
+</body>
+</html>

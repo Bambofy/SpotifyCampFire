@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <title>CampFire</title>
+
+    <style>
+        html {
+            background-color: #ecebe8;
+        }
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <!-- logo -->
+        <div class="row">
+            <a href="index.html">
+                <img src="images/logo.png" href="index.html" />
+            </a>
+            <br />
+            <br />
+            <img src="images/info.png" href="index.html" />
+        </div>
+
+        <br />
+        <br />
+        <div class="row">
+            <div class="large-10 large-centered columns text-center">
+                <input type="text" id="createRoomInputName" placeholder="Name..." />
+                <input type="text" id="createRoomInput" placeholder="Type room name here..." />
+            </div>
+            <label><a href="javascript:void(0);" onclick="toggleHelp();">toggle help</a></label>
+        </div>
+
+        <br />
+        <br />
+    </div>
+
+
+    <script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+    <script>
+        $("#help").hide();
+
+        $("#createRoomInput").keypress(function(e)
+        {
+            if (e.keyCode == 13)
+            {
+                var name = $('#createRoomInput').val();
+                var username = $('#createRoomInputName').val();
+
+                // set the room id state, so we can redirect to room and have the name
+                window.localStorage.setItem("roomID", name);
+                window.localStorage.setItem("username", username);
+                // redirect
+                window.location.href = "room.html";
+            }
+        });
+
+        function toggleHelp()
+        {
+            // make sure we don't get any nasty flashing
+            if($("#help").length > 0)
+            {
+                $("#help").remove();
+            }
+            else
+            {
+                $("#content").append("<div id='help'><div class='row'><dl><dt>Creating rooms</dt><dd>Creating a room is as easy as entering the desired name into the textbox above and pressing enter!</dd><dt>Joining rooms</dt><dd>To join a room, type the room name into the textbox above and hit enter.</dd><dt>Room controls</dt><dd>Once inside a room you can play songs to everyone by copy and pasting (ctrl+c and ctrl+v) the song URI into the message input box. To get a song URI, right click the song in spotify and select the 'Copy Spotify URI' or 'Copy HTTP Link'</dd></dl></div></div>");
+            }
+        }
+
+    </script>
+    <script src="scripts/foundation.min.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
